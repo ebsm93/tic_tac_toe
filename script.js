@@ -27,6 +27,7 @@ const GameBoard = (name) => {
 	const board = document.querySelector('#gameBoard');
 	cell_array = [];
 
+	//Cell factory function
 	const CellObject = (cellname) => {
 		occupied = false;
 		currentMark = '';
@@ -47,9 +48,11 @@ const GameBoard = (name) => {
 		for (let n = 1;n<=3;n++) {
 			cellCount += 1;
 
+			//Creation of cell objects
 			let cell = CellObject(`cell${cellCount}`);
 			cell_array.push(cell);
 
+			//Creation of DOM div elements for cells
 			let cellDOM = document.createElement('div');
 			cellDOM.classList.add('cell');
 			cellDOM.setAttribute('id', `cell${cellCount}`);
@@ -57,14 +60,17 @@ const GameBoard = (name) => {
 		board.appendChild(row);
 		}
 	}
-	GameEngine(cell_array, name);
+	//launch game
+	gameEngine(cell_array, name);
 };
 
-const GameEngine = (cells, name) => {
+function gameEngine (cells, name) {
 	
 	let winCombos = genWinComs(cells);
 	cpuMoveOptions = [...cells];
 
+
+	//set event listeners for each cell
 	const cellDOMarray = document.querySelectorAll('.cell');
 	cellDOMarray.forEach(c => {
 	c.addEventListener('click',clickSpace);
@@ -76,6 +82,7 @@ const GameEngine = (cells, name) => {
 
 
 	function shiftTurn() {
+		//toggle turn display
 		if (currentTurn === `${name}`) {
 			currentTurnDOM.textContent = `current turn: ${name}`;
 		} else {
@@ -85,7 +92,7 @@ const GameEngine = (cells, name) => {
 	}
 
 	function clickSpace() {
-
+		//get info from clicked cell, find and send corresponding object to process cell function
 		cellDOMid = this.getAttribute('id');
 		cellIndex = cells.findIndex((cell) => cell.cellname === cellDOMid);
 		cpuCellIndex = cpuMoveOptions.findIndex((cpuCell) => cpuCell.cellname === cellDOMid);
@@ -98,10 +105,10 @@ const GameEngine = (cells, name) => {
 			alert('This cell has already been used');
 		} else {
 			cellDOM = document.getElementById(cellDOMid);
-			cellDOM.innerHTML = '<img src="./images/transparentO.png" alt="O mark" style="height: 100px; width: auto;">';
+			cellDOM.innerHTML = '<img src="./images/transparentO.png" alt="O mark" style="height: 100px; width: auto;">'; //insert transparent O image into cell
 			cell.occupied = true;
 			cell.currentMark = 'O';
-			cpuMoveOptions.splice(cpuCellIndex, 1);
+			cpuMoveOptions.splice(cpuCellIndex, 1);	//remove this cell object from possible CPU move options
 			currentTurn = `CPU`;
 			analyzeBoard()
 			shiftTurn();
