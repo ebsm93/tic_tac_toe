@@ -1,0 +1,92 @@
+
+body {
+	background-color: lemonchiffon;
+}
+
+.header {
+	text-align: center;
+	font-size: 60px;
+	font-weight: bolder ;
+	text-decoration: underline;
+	margin-bottom: -30px;
+	margin-top: -30px;
+
+}
+
+#nameForm {
+
+	font-size: 28px;
+	padding: 100px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 25px;
+}
+
+#nameInput {
+	font-size: 20px;
+}
+
+#submitNameBtn {
+	font-size: 22px;
+	border-radius: 5px;
+	border-width: thin;
+	padding: 2px 13px;
+	/*box-shadow: black ;*/
+}
+
+#submitNameBtn:hover {
+	background-color: darkgrey;
+}
+
+#mainSection {
+	margin-top: 0px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap:  20px;
+}
+
+#gameBoard {
+	margin-top: 20px;
+}
+
+.row {
+	display: flex;
+}
+
+#row1,
+#row2 {
+	border-bottom: solid;
+}
+
+.cell {
+	display: flex;
+	height: 200px;
+	width: 200px;
+	justify-content: center;
+	align-items: center;
+}
+
+#cell1,
+#cell2,
+#cell4,
+#cell5,
+#cell7,
+#cell8 {
+	border-right: solid;
+}
+
+#scoreBoard {
+	font-size: 30px;
+}
+
+#currentTurn {
+	font-size: 30px;	
+}
+
+.footer {
+	margin-top: 60px;
+	text-align: center;
+}
