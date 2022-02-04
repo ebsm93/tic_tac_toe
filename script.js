@@ -65,6 +65,8 @@ const GameBoard = (name) => {
 };
 
 function gameEngine (cells, name) {
+
+	let gameActive = true;
 	
 	let winCombos = genWinComs(cells);
 	cpuMoveOptions = [...cells];
@@ -113,7 +115,6 @@ function gameEngine (cells, name) {
 			analyzeBoard()
 			shiftTurn();
 		}
-
 	}
 
 	function cpuTurn() {
@@ -126,8 +127,10 @@ function gameEngine (cells, name) {
 			cpuMoveOptions.splice(0, 1);
 		} else if (amountOptions <= 0 ) {
 			analyzeBoard()
-			alert('TIE')
-			gameOver()
+			if (gameActive) {
+			alert('TIE');
+			}
+			gameOver();
 		} else {
 			let cpuRandomChoiceIndex = Math.floor(Math.random() * amountOptions);
 			console.log(`CPU RAND INDEX: ${cpuRandomChoiceIndex}`);
@@ -185,5 +188,6 @@ function gameEngine (cells, name) {
 	function gameOver() {
 		console.log('game over');
 		location.reload()
+		gameActive = false;
 	}
 }
